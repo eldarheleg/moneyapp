@@ -5,6 +5,17 @@ class Transactions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text('Money App'),),);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Money App'),
+      ),
+      body: Column(
+        children: [
+          Center(
+            child: Text('trenutno stanje'),
+          )
+        ],
+      ),
+    );
   }
 }
