@@ -9,5 +9,19 @@ class TransactionController extends GetxController {
   TextEditingController amountController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   late Transaction transaction;
-  
+  var count = 0.obs;
+  RxBool isOn = false.obs;
+
+  void increment() {
+    count++;
+  }
+
+  void toggleSwitcha() {
+    if (isOn.value) {
+      isOn.value = false;
+    } else {
+      isOn.value = true  ;
+    }
+    print(isOn.value);
+  }
 }

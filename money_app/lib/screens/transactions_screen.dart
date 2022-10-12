@@ -8,14 +8,16 @@ import '../widgets/transaction_list.dart';
 import '../controllers/transactions_controller.dart';
 
 class TransactionsScreen extends StatelessWidget {
-  
   //void addNewTransaction( )
-  final TransactionController transController = Get.put(TransactionController());
+  final TransactionController transController =
+      Get.put(TransactionController());
+
+  
+
   @override
   Widget build(BuildContext context) {
     //final List<Transaction> transactions = [];
-    String data = "";
-    //final size = MediaQuery.of(context).size;
+
     final th = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
@@ -31,9 +33,14 @@ class TransactionsScreen extends StatelessWidget {
         children: [
           Column(
             children: [
-              Column(children: [
-                Text('amounttt')
-              ]),
+              Column(children: [Text('amounttt')]),
+              ElevatedButton(
+                onPressed: () => Get.find<TransactionController>().increment(),
+                child: Text('data'),
+              ),
+              GetX<TransactionController>(
+                  //init: transController,
+                  builder: (_) => Text('this is observe : ${_.count}')),
               Container(
                 height: 500.h,
                 color: const Color(0xffF7F7F7),
@@ -102,7 +109,11 @@ class Loan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TransactionsScreen tran = TransactionsScreen();
     return GestureDetector(
+      onTap: () {
+        Get.toNamed("/LoanInput");
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -128,7 +139,7 @@ class TopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.to(() => const PayInputAmount()),
+      onTap: () => Get.to(() => PayInputAmount()),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -154,7 +165,7 @@ class Pay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.to(const PayInputAmount()),
+      onTap: () => Get.to(PayInputAmount()),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

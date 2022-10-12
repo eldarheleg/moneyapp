@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/transactions_controller.dart';
+import '../screens/transactions_screen.dart';
 
 class PayInputName extends StatelessWidget {
-  const PayInputName({super.key});
+  final TransactionsScreen tran = TransactionsScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,9 @@ class PayInputName extends StatelessWidget {
         ),
         centerTitle: true,
         actions: [
-          IconButton(onPressed:() => Get.toNamed("/PayInputAmount"), icon: Icon(Icons.backspace_outlined))
+          IconButton(
+              onPressed: () => Get.toNamed("/PayInputAmount"),
+              icon: Icon(Icons.backspace_outlined))
         ],
       ),
       body: Column(
@@ -38,11 +41,12 @@ class PayInputName extends StatelessWidget {
           ),
           ElevatedButton(
               onPressed: () {
-                Get.back(result: _text.text);
+                Get.find<TransactionController>().increment();
               },
               child: Text('posalji na glavni screen')),
         ],
       ),
-    );;
+    );
+    ;
   }
 }

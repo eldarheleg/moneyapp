@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import './screens/transactions_screen.dart';
 import './screens/pay_input_amount.dart';
 import './screens/pay_input_name.dart';
+import './screens/loan_input_screen.dart';
 
 void main() {
   runApp(MoneyApp());
@@ -36,6 +37,7 @@ class MoneyApp extends StatelessWidget {
           GetPage(name: "/", page:() =>  TransactionsScreen()),
           GetPage(name: "/PayInputAmount", page:() =>  PayInputAmount()),
           GetPage(name: "/PayInputName", page:() =>  PayInputName()),
+          GetPage(name: "/LoanInput", page:() =>  LoanInputScreen()),
         ],
       ),
       designSize: const Size(375, 812),
