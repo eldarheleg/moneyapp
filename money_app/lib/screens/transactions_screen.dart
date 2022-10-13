@@ -6,18 +6,17 @@ import './pay_input_amount.dart';
 import '../models/Transaction.dart';
 import '../widgets/transaction_list.dart';
 import '../controllers/transactions_controller.dart';
+import '../controllers/amount_controller.dart';
 
 class TransactionsScreen extends StatelessWidget {
   //void addNewTransaction( )
   final TransactionController transController =
       Get.put(TransactionController());
 
-  
-
   @override
   Widget build(BuildContext context) {
     //final List<Transaction> transactions = [];
-
+    final AmountController amoc = AmountController();
     final th = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
@@ -33,14 +32,13 @@ class TransactionsScreen extends StatelessWidget {
         children: [
           Column(
             children: [
-              Column(children: [Text('amounttt')]),
-              ElevatedButton(
-                onPressed: () => Get.find<TransactionController>().increment(),
-                child: Text('data'),
+              GetX<AmountController>(
+                init: amoc,
+                builder: (c) => Text('amounttt : ${c.amount.value}'),
               ),
-              GetX<TransactionController>(
-                  //init: transController,
-                  builder: (_) => Text('this is observe : ${_.count}')),
+              // GetX<TransactionController>(
+              //     //init: transController,
+              //     builder: (_) => Text('this is observe : ${_.count}')),
               Container(
                 height: 500.h,
                 color: const Color(0xffF7F7F7),

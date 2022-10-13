@@ -122,7 +122,7 @@ class LoanInputScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Repeating payment'),
-                  GetX<TransactionController>(builder: (c) => Switch(value: c.isOn.value, onChanged: ((value) => c.toggleSwitcha()),))
+                  //GetX<TransactionController>(builder: (c) => Switch(value: c.isOn.value, onChanged: ((value) => c.toggleSwitcha()),))
                   
                   
                 ],
