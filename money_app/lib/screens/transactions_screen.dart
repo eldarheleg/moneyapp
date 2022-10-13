@@ -15,7 +15,6 @@ class TransactionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final List<Transaction> transactions = [];
     final AmountController amoc = AmountController();
     final th = Theme.of(context);
     return Scaffold(
@@ -24,7 +23,7 @@ class TransactionsScreen extends StatelessWidget {
         backgroundColor: th.primaryColor,
         title: const Text(
           'Money App',
-          style: TextStyle(fontSize: 16),
+          style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
       ),
@@ -32,16 +31,20 @@ class TransactionsScreen extends StatelessWidget {
         children: [
           Column(
             children: [
-              GetX<AmountController>(
-                init: amoc,
-                builder: (c) => Text('amounttt : ${c.amount.value}'),
-              ),
-              // GetX<TransactionController>(
-              //     //init: transController,
-              //     builder: (_) => Text('this is observe : ${_.count}')),
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  width: double.maxFinite,
+                  color: const Color(0xffC0028B),
+                  child:  GetX<AmountController>(
+                      init: amoc,
+                      builder: (c) => Text('amount : ${c.amount.value}'),
+                    ),
+                  ),
+                ),
               Container(
                 height: 500.h,
-                color: const Color(0xffF7F7F7),
+                color: const Color(0xfffffff),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -83,6 +86,7 @@ class TransactionsScreen extends StatelessWidget {
               width: 335,
               height: 100,
               child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 elevation: 5,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -20,6 +20,7 @@ class MoneyApp extends StatelessWidget {
       builder: (context, child) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          brightness: Brightness.light,
           primaryColor: Color(
               0xffC0028B), //instead of hash # put 0xff to get the wanted color
           colorScheme:

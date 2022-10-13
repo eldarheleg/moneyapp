@@ -16,5 +16,7 @@ class TransactionController extends GetxController {
     count++;
   }
 
-  
+  toggleSwitch(bool val) {
+    isOn.value = val ? isOn.value = true : isOn.value = false;
+  }
 }

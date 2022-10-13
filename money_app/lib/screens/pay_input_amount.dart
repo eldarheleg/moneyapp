@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../models/Transaction.dart';
 import '../widgets/transaction_list.dart';
@@ -19,6 +20,7 @@ class PayInputAmount extends StatelessWidget {
     final _text = TextEditingController();
     var value = 0.0;
     return Scaffold(
+      backgroundColor: const Color(0xffC0028B),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: th.primaryColor,
@@ -33,24 +35,55 @@ class PayInputAmount extends StatelessWidget {
               icon: Icon(Icons.backspace_outlined))
         ],
       ),
-      body: Column(
-        children: [
-          Text('How much?'),
-          Center(
-            child: TextField(
-              controller: _text,
-              decoration: InputDecoration(labelText: 'amount'),
-              onSubmitted: (value) {
-                double val = double.parse(value);
-                amoCon.valueCounter(val);
-              },
-              keyboardType: TextInputType.number,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 100.h,
             ),
-          ),
-          ElevatedButton(
-              onPressed: () => amoCon.valueCounter(double.parse(_text.text)),
-              child: Text('posalji na glavni screen')),
-        ],
+            Text(
+              'How much?',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w600),
+            ),
+            SizedBox(
+              height: 70.h,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Center(
+                child: TextField(
+                
+                  controller: _text,
+                  decoration: InputDecoration(enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white))),
+                  onSubmitted: (value) {
+                    double val = double.parse(value);
+                    amoCon.valueCounter(val);
+                  },
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 300.h,
+            ),
+            SizedBox(
+                width: 200.w,
+                height: 60.h,
+                child: TextButton(
+                  style: TextButton.styleFrom(backgroundColor: Color.fromRGBO(255, 255, 255, 0.5),),
+                    onPressed: () {
+                    Get.toNamed("/PayInputName");
+                    amoCon.valueCounter(double.parse(_text.text));
+                  },
+                    child: Text('Next',style: TextStyle(color: Color.fromARGB(255, 255, 255, 255),fontSize: 18))),
+              ),
+            
+          ],
+        ),
       ),
     );
   }
