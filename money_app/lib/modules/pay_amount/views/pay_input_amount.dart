@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../models/Transaction.dart';
-import '../widgets/transaction_list.dart';
-import '../controllers/transactions_controller.dart';
+import '../../../models/Transaction.dart';
+import '../../../widgets/transaction_list.dart';
+import '../../home/controllers/transactions_controller.dart';
 import '../controllers/amount_controller.dart';
-import './transactions_screen.dart';
+import '../../home/views/transactions_screen.dart';
 
 class PayInputAmount extends StatelessWidget {
   //final TransactionsScreen tran = TransactionsScreen();

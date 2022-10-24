@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import './screens/transactions_screen.dart';
-import './screens/pay_input_amount.dart';
-import './screens/pay_input_name.dart';
-import './screens/loan_input_screen.dart';
+import 'modules/home/views/transactions_screen.dart';
+import 'modules/pay_amount/views/pay_input_amount.dart';
+import 'modules/pay_name/views/pay_input_name.dart';
+import 'modules/loan_application/views/loan_input_screen.dart';
 
 void main() {
   runApp(MoneyApp());

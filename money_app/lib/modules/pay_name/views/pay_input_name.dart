@@ -2,9 +2,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/transactions_controller.dart';
-import '../screens/transactions_screen.dart';
-import '../controllers/amount_controller.dart'; //testing
+import '../../home/controllers/transactions_controller.dart';
+import '../../home/views/transactions_screen.dart';
+import '../../pay_amount/controllers/amount_controller.dart'; //testing
 
 class PayInputName extends StatelessWidget {
   final TransactionController tranController = TransactionController();
