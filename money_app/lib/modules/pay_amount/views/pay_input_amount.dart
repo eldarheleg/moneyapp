@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../models/Transaction.dart';
 import '../../../widgets/transaction_list.dart';
@@ -39,7 +38,7 @@ class PayInputAmount extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 100.h,
+              height: 100,
             ),
             Text(
               'How much?',
@@ -50,10 +49,10 @@ class PayInputAmount extends StatelessWidget {
                   fontWeight: FontWeight.w600),
             ),
             SizedBox(
-              height: 70.h,
+              height: 70,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: Center(
                 child: TextField(
                 
@@ -68,11 +67,11 @@ class PayInputAmount extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 300.h,
+              height: 300,
             ),
             SizedBox(
-                width: 200.w,
-                height: 60.h,
+                width: 200,
+                height: 60,
                 child: TextButton(
                   style: TextButton.styleFrom(backgroundColor: Color.fromRGBO(255, 255, 255, 0.5),),
                     onPressed: () {

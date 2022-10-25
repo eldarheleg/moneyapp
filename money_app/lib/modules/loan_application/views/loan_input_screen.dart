@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 import '../../home/controllers/transactions_controller.dart';
 
@@ -38,8 +38,8 @@ class LoanInputScreen extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(3.0), //or 15.0
                       child: Container(
-                        height: 64.h,
-                        width: 64.w,
+                        height: 64,
+                        width: 64,
                         color: Color(0xffC0028B),
                         child: Icon(
                           Icons.shopping_bag_rounded,
@@ -57,26 +57,26 @@ class LoanInputScreen extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 70.h,
+            height: 70,
           ),
           Container(
             color: Colors.grey,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 20.h),
+              padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(3.0), //or 15.0
                     child: Container(
-                      height: 20.h,
-                      width: 20.w,
+                      height: 20,
+                      width: 20,
                       color: Color(0xffC0028B),
                       child: Icon(Icons.library_books,
                           color: Colors.white, size: 12),
                     ),
                   ),
-                  SizedBox(width: 10.w,),
+                  SizedBox(width: 10,),
                   Text('Add receipt'),
                   
                 ],
@@ -84,27 +84,27 @@ class LoanInputScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 70.h,
+            height: 70,
           ),
           Text('Share the cost'),
           Container(
             color: Colors.grey,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 20.h),
+              padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(3.0), //or 15.0
                     child: Container(
-                      height: 20.h,
-                      width: 20.w,
+                      height: 20,
+                      width: 20,
                       color: Color(0xffC0028B),
                       child: Icon(Icons.network_ping,
                           color: Colors.white, size: 12),
                     ),
                   ),
-                  SizedBox(width: 10.w,),
+                  SizedBox(width: 10,),
                   Text('split this bill'),
                   
                 ],
@@ -112,12 +112,12 @@ class LoanInputScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 50.h,
+            height: 50,
           ),
           Container(
             color: Colors.grey,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 20.h),
+              padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

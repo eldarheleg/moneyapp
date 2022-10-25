@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:get/get.dart';
 
 import '../../pay_amount/views/pay_input_amount.dart';
@@ -43,18 +43,18 @@ class TransactionsScreen extends StatelessWidget {
                   ),
                 ),
               Container(
-                height: 500.h,
+                height: 500,
                 color: const Color(0xfffffff),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: 100.h,
+                            height: 100,
                           ),
                           const Text(
                             'Recent activity',
@@ -64,7 +64,7 @@ class TransactionsScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w600),
                           ),
                           SizedBox(
-                            height: 10.h,
+                            height: 10,
                           ),
                           const Text('TODAY',
                               style: TextStyle(
@@ -125,7 +125,7 @@ class Loan extends StatelessWidget {
             style: TextStyle(fontSize: 12),
           ),
           SizedBox(
-            height: 16.h,
+            height: 16,
           ),
         ],
       ),
@@ -151,7 +151,7 @@ class TopUp extends StatelessWidget {
             style: TextStyle(fontSize: 12),
           ),
           SizedBox(
-            height: 16.h,
+            height: 16,
           ),
         ],
       ),
@@ -177,7 +177,7 @@ class Pay extends StatelessWidget {
             style: TextStyle(fontSize: 12),
           ),
           SizedBox(
-            height: 16.h,
+            height: 16,
           ),
         ],
       ),
