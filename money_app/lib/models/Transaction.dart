@@ -29,12 +29,12 @@ class Transaction {
         createdAt: DateTime.now()),
   ];
 
-  static Transaction formJson(Map<String, dynamic> json) {
+  static Transaction fromJson(Map<String, dynamic> json) {
     return Transaction(
         id: json['id'],
         type: json['type'],
         name: json['name'],
         amount: json['amount'],
-        createdAt: DateTime.now());
+        createdAt: DateTime.parse(json['createdAt'].toString()));
   }
 }

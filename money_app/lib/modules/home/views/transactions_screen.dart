@@ -1,21 +1,37 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../../pay_amount/views/pay_input_amount.dart';
-import '../../../models/Transaction.dart';
+import '../../../models/Transaction.dart' as Tr;
 import '../../../widgets/transaction_list.dart';
 import '../controllers/transactions_controller.dart';
 import '../../pay_amount/controllers/amount_controller.dart';
+import '../../../widgets/loan.dart';
+import '../../../widgets/pay.dart';
+import '../../../widgets/top_up.dart';
 
 class TransactionsScreen extends StatelessWidget {
   //void addNewTransaction( )
   final TransactionController transController =
       Get.put(TransactionController());
 
+  List<String> transIDs = [];
+
+  Future getTransIDs() async {
+    await FirebaseFirestore.instance
+        .collection('transactions')
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((element) {
+              print(element.reference);
+            }));
+  }
+
   @override
   Widget build(BuildContext context) {
     final AmountController amoc = AmountController();
+
     final th = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
@@ -23,7 +39,7 @@ class TransactionsScreen extends StatelessWidget {
         backgroundColor: th.primaryColor,
         title: const Text(
           'Money App',
-          style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
       ),
@@ -36,12 +52,12 @@ class TransactionsScreen extends StatelessWidget {
                   alignment: Alignment.center,
                   width: double.maxFinite,
                   color: const Color(0xffC0028B),
-                  child:  GetX<AmountController>(
-                      init: amoc,
-                      builder: (c) => Text('amount : ${c.amount.value}'),
-                    ),
+                  child: GetX<AmountController>(
+                    init: amoc,
+                    builder: (c) => Text('amount : ${c.amount.value}'),
                   ),
                 ),
+              ),
               Container(
                 height: 500,
                 color: const Color(0xfffffff),
@@ -86,7 +102,8 @@ class TransactionsScreen extends StatelessWidget {
               width: 335,
               height: 100,
               child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 elevation: 5,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -104,83 +121,17 @@ class TransactionsScreen extends StatelessWidget {
   }
 }
 
-class Loan extends StatelessWidget {
-  const Loan({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final TransactionsScreen tran = TransactionsScreen();
-    return GestureDetector(
-      onTap: () {
-        Get.toNamed("/LoanInput");
-      },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Image.asset('lib/assets/images/loan_icon.png'),
-          const Text(
-            'Loan',
-            style: TextStyle(fontSize: 12),
-          ),
-          SizedBox(
-            height: 16,
-          ),
-        ],
-      ),
-    );
-  }
+Widget buildTransaction(Tr.Transaction trans) {
+  return ListTile(
+    leading: CircleAvatar(child: Text('${trans.id}')),
+    title: Text(trans.name),
+    subtitle: Text(trans.createdAt.toString()),
+  );
 }
 
-class TopUp extends StatelessWidget {
-  const TopUp({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Get.to(() => PayInputAmount()),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Image.asset('lib/assets/images/wallet_icon.png'),
-          const Text(
-            'Top Up',
-            style: TextStyle(fontSize: 12),
-          ),
-          SizedBox(
-            height: 16,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class Pay extends StatelessWidget {
-  const Pay({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Get.to(PayInputAmount()),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Image.asset('lib/assets/images/phone_icon.png'),
-          const Text(
-            'Pay',
-            style: TextStyle(fontSize: 12),
-          ),
-          SizedBox(
-            height: 16,
-          ),
-        ],
-      ),
-    );
-  }
+Stream<List<Tr.Transaction>> readTransaction() {
+  return FirebaseFirestore.instance.collection('transactions').snapshots().map(
+      (event) => event.docs
+          .map((doc) => Tr.Transaction.fromJson(doc.data()))
+          .toList());
 }

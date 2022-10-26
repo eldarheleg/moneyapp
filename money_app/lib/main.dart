@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:firebase_core/firebase_core.dart';
+
 
 import 'modules/home/views/transactions_screen.dart';
 import 'modules/pay_amount/views/pay_input_amount.dart';
@@ -31,5 +31,6 @@ class MoneyApp extends StatelessWidget {
           GetPage(name: "/LoanInput", page: () => LoanInputScreen()),
         ],
     );
+
   }
 }
