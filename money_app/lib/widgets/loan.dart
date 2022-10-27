@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../modules/home/views/transactions_screen.dart';
-
+import '../modules/loan_application/views/loan_input_screen.dart';
 
 class Loan extends StatelessWidget {
   const Loan({
@@ -16,7 +16,7 @@ class Loan extends StatelessWidget {
     final TransactionsScreen tran = TransactionsScreen();
     return GestureDetector(
       onTap: () {
-        Get.toNamed("/LoanInput");
+        Get.to(LoanInput());
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,

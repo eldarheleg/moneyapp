@@ -14,7 +14,7 @@ class TopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.to(() => PayInputAmount()),
+      onTap: () => Get.to(PayInputAmount()),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

@@ -13,20 +13,7 @@ import '../../../widgets/pay.dart';
 import '../../../widgets/top_up.dart';
 
 class TransactionsScreen extends StatelessWidget {
-  //void addNewTransaction( )
-  final TransactionController transController =
-      Get.put(TransactionController());
-
-  List<String> transIDs = [];
-
-  Future getTransIDs() async {
-    await FirebaseFirestore.instance
-        .collection('transactions')
-        .get()
-        .then((snapshot) => snapshot.docs.forEach((element) {
-              print(element.reference);
-            }));
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +34,7 @@ class TransactionsScreen extends StatelessWidget {
         children: [
           Column(
             children: [
+              
               Expanded(
                 child: Container(
                   alignment: Alignment.center,
@@ -119,19 +107,4 @@ class TransactionsScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget buildTransaction(Tr.Transaction trans) {
-  return ListTile(
-    leading: CircleAvatar(child: Text('${trans.id}')),
-    title: Text(trans.name),
-    subtitle: Text(trans.createdAt.toString()),
-  );
-}
-
-Stream<List<Tr.Transaction>> readTransaction() {
-  return FirebaseFirestore.instance.collection('transactions').snapshots().map(
-      (event) => event.docs
-          .map((doc) => Tr.Transaction.fromJson(doc.data()))
-          .toList());
 }

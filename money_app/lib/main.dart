@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 
 
 import 'modules/home/views/transactions_screen.dart';
-import 'modules/pay_amount/views/pay_input_amount.dart';
-import 'modules/pay_name/views/pay_input_name.dart';
-import 'modules/loan_application/views/loan_input_screen.dart';
+import './routes/pages.dart';
 import './theme/light_theme.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+void main() {
+  
   runApp(MoneyApp());
 }
 
@@ -24,12 +21,7 @@ class MoneyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: lightTheme,
         home: TransactionsScreen(),
-        getPages: [
-          GetPage(name: "/", page: () => TransactionsScreen()),
-          GetPage(name: "/PayInputAmount", page: () => PayInputAmount()),
-          GetPage(name: "/PayInputName", page: () => PayInputName()),
-          GetPage(name: "/LoanInput", page: () => LoanInputScreen()),
-        ],
+        getPages: AppPages.pages
     );
 
   }

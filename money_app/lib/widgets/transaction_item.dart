@@ -1,11 +1,14 @@
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 import '../models/Transaction.dart';
+import '../modules/trans_details/views/transaction_details.dart';
 
 class TransactionItem extends StatelessWidget {
+
   final int index;
   TransactionItem({required this.index});
   @override
@@ -15,13 +18,16 @@ class TransactionItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(3.0), //or 15.0
-            child: Container(
-              height: 20,
-              width: 20,
-              color: Color(0xffC0028B),
-              child: Icon(Icons.shopping_bag_rounded, color: Colors.white, size: 12),
+          InkWell(
+            onTap: () => Get.to(TransactionDetails()),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(3.0), //or 15.0
+              child: Container(
+                height: 20,
+                width: 20,
+                color: Color(0xffC0028B),
+                child: Icon(Icons.shopping_bag_rounded, color: Colors.white, size: 12),
+              ),
             ),
           ),
           SizedBox(width: 10,),
