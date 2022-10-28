@@ -7,7 +7,7 @@ import '../controllers/loan_input_controller.dart';
 class LoanInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var c = Get.put(LoanInputController());
+    LoanInputController c = Get.put(LoanInputController());
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
