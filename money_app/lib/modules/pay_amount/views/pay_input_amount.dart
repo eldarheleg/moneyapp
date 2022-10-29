@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../models/Transaction.dart';
-import '../../../widgets/transaction_list.dart';
-import '../../home/controllers/transactions_controller.dart';
+import './numpad.dart';
 import '../controllers/amount_controller.dart';
-import '../../home/views/transactions_screen.dart';
 
 class PayInputAmount extends StatelessWidget {
-  //final TransactionsScreen tran = TransactionsScreen();
-  final TransactionController tranController = TransactionController();
-  final AmountController amoCon = AmountController.to;
-
+  AmountController c = Get.put(AmountController());
   @override
   Widget build(BuildContext context) {
     final th = Theme.of(context);
-    //final controller = TransactionController();
-    final _text = TextEditingController();
-    var value = 0.0;
+    TextEditingController _text = TextEditingController();
     return Scaffold(
       backgroundColor: const Color(0xffC0028B),
       appBar: AppBar(
@@ -36,51 +28,38 @@ class PayInputAmount extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 100,
-            ),
-            Text(
-              'How much?',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600),
-            ),
-            SizedBox(
-              height: 70,
-            ),
+            // display the entered numbers
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Center(
-                child: TextField(
-                
+              padding: const EdgeInsets.all(20),
+              child: SizedBox(
+                height: 70,
+                child: Center(
+                    child: TextField(
                   controller: _text,
-                  decoration: InputDecoration(enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white))),
-                  onSubmitted: (value) {
-                    double val = double.parse(value);
-                    amoCon.valueCounter(val);
-                  },
-                  keyboardType: TextInputType.number,
-                ),
+                  textAlign: TextAlign.center,
+                  showCursor: false,
+                  style: const TextStyle(fontSize: 40),
+                  // Disable the default soft keybaord
+                  keyboardType: TextInputType.none,
+                )),
               ),
             ),
-            SizedBox(
-              height: 300,
+            // implement the custom NumPad
+            NumPad(
+              buttonSize: 75,
+              buttonColor: Colors.purple,
+              iconColor: Colors.deepOrange,
+              controller: _text,
+              delete: () {
+                _text.text = _text.text.substring(0, _text.text.length - 1);
+              },
+              // do something with the input numbers
+              onSubmit: () {
+                c.valueCounter(c.amount.value);
+              },
             ),
-            SizedBox(
-                width: 200,
-                height: 60,
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Color.fromRGBO(255, 255, 255, 0.5),),
-                    onPressed: () {
-                    Get.toNamed("/PayInputName");
-                    amoCon.valueCounter(double.parse(_text.text));
-                  },
-                    child: Text('Next',style: TextStyle(color: Color.fromARGB(255, 255, 255, 255),fontSize: 18))),
-              ),
-            
           ],
         ),
       ),

@@ -28,13 +28,4 @@ class Transaction {
         amount: 55.00,
         createdAt: DateTime.now()),
   ];
-
-  static Transaction fromJson(Map<String, dynamic> json) {
-    return Transaction(
-        id: json['id'],
-        type: json['type'],
-        name: json['name'],
-        amount: json['amount'],
-        createdAt: DateTime.parse(json['createdAt'].toString()));
-  }
 }

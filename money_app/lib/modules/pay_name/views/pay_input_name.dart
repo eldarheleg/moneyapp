@@ -8,7 +8,7 @@ import '../../pay_amount/controllers/amount_controller.dart'; //testing
 
 class PayInputName extends StatelessWidget {
   final TransactionController tranController = TransactionController();
-  final AmountController amoCon = AmountController.to;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class PayInputName extends StatelessWidget {
                           borderSide: BorderSide(color: Colors.white))),
                   onSubmitted: (value) {
                     double val = double.parse(value);
-                    amoCon.valueCounter(val);
+                    
                   },
                 ),
               ),
@@ -73,7 +73,7 @@ class PayInputName extends StatelessWidget {
                     backgroundColor: Color.fromRGBO(255, 255, 255, 0.5),
                   ),
                   onPressed: () {
-                    amoCon.valueCounter(double.parse(_text.text));
+                    
                     Get.toNamed("/");
                   },
                   child: Text('Pay',

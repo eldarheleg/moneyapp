@@ -10,7 +10,7 @@ class TransactionDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var th = Theme.of(context);
-    double am = 32.20;
+    double am = c.current.value;
     int x = int.parse(am.toStringAsFixed(2).split('.')[0]);
     int y = int.parse(am.toStringAsFixed(2).split('.')[1]);
     return Scaffold(
@@ -31,7 +31,7 @@ class TransactionDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -121,31 +121,34 @@ class TransactionDetails extends StatelessWidget {
                   fontFamily: 'Montserrat'),
             ),
           ),
-          Container(
-            color: Color(0xffffffff),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(3.0), //or 15.0
-                    child: Container(
-                      height: 20,
-                      width: 20,
-                      color: Color(0xffC0028B),
-                      child: Icon(Icons.network_ping,
-                          color: Colors.white, size: 12),
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+              color: Color(0xffffffff),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(3.0), //or 15.0
+                      child: Container(
+                        height: 20,
+                        width: 20,
+                        color: Color(0xffC0028B),
+                        child: Icon(Icons.network_ping,
+                            color: Colors.white, size: 12),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'Split this bill',
-                    style: TextStyle(fontSize: 14),
-                  ),
-                ],
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Split this bill',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -166,23 +169,72 @@ class TransactionDetails extends StatelessWidget {
           Container(
             color: Color(0xffffffff),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Repeating payment'),
-                  SizedBox(
-                    width: 10,
-                  ),
                   Obx(
                     () => Switch(
                         value: c.isOn.value,
                         onChanged: (value) {
                           c.toggleSwitch(value);
+                          c.halfAmount();
                         }),
                   ),
                 ],
               ),
+            ),
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          InkWell(
+            onTap: () {
+              Get.defaultDialog(
+                  middleText: 'Help is on the way, stay put', title: 'Help');
+            },
+            child: Container(
+              color: Color(0xffffffff),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Something wrong? Get help',
+                      style: TextStyle(fontSize: 14, color: Colors.redAccent),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(left: 20.0),
+            child: Text(
+              'Transaction ID #1223SD23RWDF2DFAS',
+              style: TextStyle(
+                  color: Color(0xffB0B3B8),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 10,
+                  fontFamily: 'Montserrat'),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(left: 20.0),
+            child: Text(
+              'eBay - Merchant ID #1245',
+              style: TextStyle(
+                  color: Color(0xffB0B3B8),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 10,
+                  fontFamily: 'Montserrat'),
             ),
           ),
         ],
