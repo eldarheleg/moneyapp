@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 
 import './numpad.dart';
 import '../controllers/amount_controller.dart';
+import '../../trans_details/controllers/transaction_details_controller.dart';
 
 class PayInputAmount extends StatelessWidget {
   AmountController c = Get.put(AmountController());
+  TransactionDetailsController t = Get.put(TransactionDetailsController());
   @override
   Widget build(BuildContext context) {
     final th = Theme.of(context);
@@ -57,7 +59,7 @@ class PayInputAmount extends StatelessWidget {
               },
               // do something with the input numbers
               onSubmit: () {
-                c.valueCounter(c.amount.value);
+                
               },
             ),
           ],

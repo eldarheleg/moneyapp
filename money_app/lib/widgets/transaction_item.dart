@@ -1,12 +1,13 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../models/Transaction.dart';
 import '../modules/trans_details/views/transaction_details.dart';
+import '../modules/home/controllers/transactions_controller.dart';
 
 class TransactionItem extends StatelessWidget {
+  TransactionController c = Get.put(TransactionController());
   final int index;
   TransactionItem({required this.index});
   @override
@@ -31,8 +32,8 @@ class TransactionItem extends StatelessWidget {
             SizedBox(
               width: 10,
             ),
-            Expanded(child: Text(Transaction.transactions[index].name)),
-            Text('${Transaction.transactions[index].amount}'),
+            Expanded(child: Text(c.PayTransactions[index].name)),
+            Text('${c.PayTransactions[index].amount}'),
           ],
         ),
       ),

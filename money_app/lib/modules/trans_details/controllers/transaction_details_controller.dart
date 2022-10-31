@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../../models/Transaction.dart';
 
 class TransactionDetailsController extends GetxController {
   final RxBool isOn = false.obs;
@@ -8,7 +9,12 @@ class TransactionDetailsController extends GetxController {
     isOn.value = val;
   }
 
-  void halfAmount() {
+  void splitAmount() {
     current.value = current.value / 2;
+  }
+
+  void repeatingPayment(double amount, String name) {
+    
+    
   }
 }
