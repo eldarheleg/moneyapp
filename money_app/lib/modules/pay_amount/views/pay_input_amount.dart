@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import './numpad.dart';
 import '../controllers/amount_controller.dart';
 import '../../trans_details/controllers/transaction_details_controller.dart';
+import './custom_numpad.dart';
 
 class PayInputAmount extends StatelessWidget {
   AmountController c = Get.put(AmountController());
@@ -22,17 +23,14 @@ class PayInputAmount extends StatelessWidget {
           style: TextStyle(fontSize: 16),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: () => Get.toNamed("/"),
-              icon: Icon(Icons.backspace_outlined))
-        ],
+        
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // display the entered numbers
+            SizedBox(height: 70,),
             Padding(
               padding: const EdgeInsets.all(20),
               child: SizedBox(
@@ -49,18 +47,33 @@ class PayInputAmount extends StatelessWidget {
               ),
             ),
             // implement the custom NumPad
-            NumPad(
-              buttonSize: 75,
-              buttonColor: Colors.purple,
-              iconColor: Colors.deepOrange,
-              controller: _text,
-              delete: () {
-                _text.text = _text.text.substring(0, _text.text.length - 1);
-              },
-              // do something with the input numbers
-              onSubmit: () {
-                
-              },
+            // NumPad(
+            //   buttonSize: 75,
+              
+            //   iconColor: Colors.deepOrange,
+            //   controller: _text,
+            //   delete: () {
+            //     _text.text = _text.text.substring(0, _text.text.length - 1);
+            //   },
+            //   // do something with the input numbers
+              
+            // ),
+            CustomNumpad(buttonSize: 50,text: _text, delete: ()=>_text.text = _text.text.substring(0,_text.text.length-1),),
+            SizedBox(
+              width: 200,
+              height: 60,
+              child: TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(255, 255, 255, 0.5),
+                  ),
+                  onPressed: () {
+                    
+                    Get.toNamed("/");
+                  },
+                  child: Text('Pay',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontSize: 18))),
             ),
           ],
         ),

@@ -5,6 +5,15 @@ import 'package:collection/collection.dart';
 import '../../../models/Transaction.dart';
 
 class TransactionController extends GetxController {
+  // int id;
+  // Types type;
+  // String name;
+  // double amount;
+  // final DateTime createdAt;
+  void setName(){}
+  void addTransaction(Transaction t){
+    
+  }
 var PayTransactions = <Transaction> [
     Transaction(
         id: 1,
