@@ -28,6 +28,7 @@ var PayTransactions = <Transaction> [
         amount: 55.00,
         createdAt: DateTime.now()),
   ].obs;
+  
   var TopUpTransactions = <Transaction>[
     Transaction(
         id: 1,
