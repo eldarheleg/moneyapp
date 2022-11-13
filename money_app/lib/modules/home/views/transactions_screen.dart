@@ -12,10 +12,11 @@ import '../../../widgets/top_up.dart';
 
 class TransactionsScreen extends StatelessWidget {
   AmountController ac = Get.put(AmountController());
+  TransactionController t = Get.put(TransactionController());
 
   @override
   Widget build(BuildContext context) {
-    double am = ac.amount.value;
+    double am = t.sum.value;
     int x = int.parse(am.toStringAsFixed(2).split('.')[0]);
     int y = int.parse(am.toStringAsFixed(2).split('.')[1]);
 

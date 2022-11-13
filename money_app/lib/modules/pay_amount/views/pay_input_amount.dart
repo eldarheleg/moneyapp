@@ -8,12 +8,12 @@ import '../../../widgets/custom_numpad.dart';
 
 class PayInputAmount extends StatelessWidget {
   AmountController c = Get.put(AmountController());
-  TransactionDetailsController t = Get.put(TransactionDetailsController());
+  //TransactionDetailsController t = Get.put(TransactionDetailsController());
 
   @override
   Widget build(BuildContext context) {
     final th = Theme.of(context);
-    TextEditingController _text = TextEditingController();
+    //TextEditingController _text = TextEditingController();
 
     return Scaffold(
       backgroundColor: const Color(0xffC0028B),
@@ -33,12 +33,6 @@ class PayInputAmount extends StatelessWidget {
             SizedBox(
               height: 70,
             ),
-            // Obx(
-            //   () => Text.rich(textSpan {}
-            //     TextSpan(text: '£'),
-
-            //   ),
-            // ),
             Padding(
               padding: const EdgeInsets.all(20),
               child: SizedBox(
@@ -49,25 +43,25 @@ class PayInputAmount extends StatelessWidget {
                       focusedBorder: UnderlineInputBorder(
                           borderSide:
                               BorderSide(color: lightTheme.primaryColor))),
-                  controller: _text,
+                  controller: c.amountController,
 
                   textAlign: TextAlign.center,
                   showCursor: false,
                   style: const TextStyle(fontSize: 40),
                   // Disable the default soft keybaord
-                  keyboardType: TextInputType.none,
+                  keyboardType: TextInputType.number,
                 )),
               ),
             ),
             SizedBox(
               height: 50,
             ),
-            CustomNumpad(
-              buttonSize: 40,
-              text: _text,
-              delete: () =>
-                  _text.text = _text.text.substring(0, _text.text.length - 1),
-            ),
+            // CustomNumpad(
+            //   buttonSize: 40,
+            //   text: _text,
+            //   delete: () =>
+            //       _text.text = _text.text.substring(0, _text.text.length - 1),
+            // ),
             SizedBox(
               height: 100,
             ),

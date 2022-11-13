@@ -57,7 +57,7 @@ class PayInputName extends StatelessWidget {
                   decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white))),
-                  onSubmitted: (value) {},
+                  onSubmitted: (_) => c.submitData(),
                 ),
               ),
             ),

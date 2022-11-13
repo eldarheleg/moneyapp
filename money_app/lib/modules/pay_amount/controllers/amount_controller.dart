@@ -15,6 +15,7 @@ class AmountController extends GetxController {
       } else {
         amount.value = enteredAmount;
       }
+      amountController.clear();
     }
   }
 }

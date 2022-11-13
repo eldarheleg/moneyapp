@@ -6,6 +6,7 @@ import '../../../models/Transaction.dart';
 
 class TransactionController extends GetxController {
   RxInt id = 1.obs;
+  RxDouble sum = 0.0.obs;
   // Types type;
   // String name;
   // double amount;
@@ -16,6 +17,13 @@ class TransactionController extends GetxController {
   //final amountController = TextEditingController();
 
   List<Transaction> get listOfTransactions => _listOfTransactions;
+  
+  double totalAmount(){
+    for(var tx in listOfTransactions){
+      sum.value += tx.amount;
+    }
+    return sum.value;
+  }
 
   addTransaction(String text, double amount) {
     if (text.isEmpty || amount == 0.0) {

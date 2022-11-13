@@ -18,6 +18,7 @@ class NameController extends GetxController {
       } else {
         text.value = inputedString;
       }
+      textController.clear();
     }
   }
 }
