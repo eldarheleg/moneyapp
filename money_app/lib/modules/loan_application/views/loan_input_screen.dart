@@ -96,28 +96,42 @@ class LoanInput extends StatelessWidget {
                 width: double.maxFinite,
                 height: 50,
                 color: Color(0xffffffff),
-                child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 20,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 4),
-                          child: Text(
-                            'Monthly Salary',
-                            style: TextStyle(
-                                color: Color(0xff9E9E9E),
-                                fontSize: 12,
-                                fontFamily: 'Montserrat'),
+                child: GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (_) => AlertDialog(
+                        title: Text("Monthly Salary"),
+                        content: TextField(keyboardType: TextInputType.phone,controller: c.mSalary,),
+                        actions: [
+                          TextButton(onPressed: () {}, child: Text("Submit"))
+                        ],
+                      ),
+                    );
+                  },
+                  child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 4),
+                            child: Text(
+                              'Monthly Salary',
+                              style: TextStyle(
+                                  color: Color(0xff9E9E9E),
+                                  fontSize: 12,
+                                  fontFamily: 'Montserrat'),
+                            ),
                           ),
-                        ),
-                        Text('\$1001',
-                            style: TextStyle(
-                                fontSize: 16, fontFamily: 'Montserrat'))
-                      ],
-                    )),
+                          Text('\$${c.mSalary.text}',
+                              style: TextStyle(
+                                  fontSize: 16, fontFamily: 'Montserrat'))
+                        ],
+                      )),
+                ),
               ),
               Container(
                 width: double.maxFinite,

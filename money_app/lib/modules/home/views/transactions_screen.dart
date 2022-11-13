@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../pay_amount/views/pay_input_amount.dart';
-import '../../../models/Transaction.dart' as Tr;
+
+
 import '../../../widgets/transaction_list.dart';
 import '../controllers/transactions_controller.dart';
 import '../../pay_amount/controllers/amount_controller.dart';
@@ -77,8 +77,7 @@ class TransactionsScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: Container(
-                    //height: mq.height * 0.65,
-                    //width: double.infinity,
+                    
                     color: const Color(0xfffffff),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
