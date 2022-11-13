@@ -4,15 +4,17 @@ import 'package:get/get.dart';
 import '../../../theme/light_theme.dart';
 import '../controllers/amount_controller.dart';
 import '../../trans_details/controllers/transaction_details_controller.dart';
-import './custom_numpad.dart';
+import '../../../widgets/custom_numpad.dart';
 
 class PayInputAmount extends StatelessWidget {
   AmountController c = Get.put(AmountController());
   TransactionDetailsController t = Get.put(TransactionDetailsController());
+
   @override
   Widget build(BuildContext context) {
     final th = Theme.of(context);
     TextEditingController _text = TextEditingController();
+
     return Scaffold(
       backgroundColor: const Color(0xffC0028B),
       appBar: AppBar(
@@ -28,11 +30,15 @@ class PayInputAmount extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // display the entered numbers
             SizedBox(
               height: 70,
             ),
-            Obx(() => Text.rich(TextSpan())),
+            // Obx(
+            //   () => Text.rich(textSpan {}
+            //     TextSpan(text: '£'),
+                
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(20),
               child: SizedBox(
@@ -44,7 +50,7 @@ class PayInputAmount extends StatelessWidget {
                           borderSide:
                               BorderSide(color: lightTheme.primaryColor))),
                   controller: _text,
-                  
+
                   textAlign: TextAlign.center,
                   showCursor: false,
                   style: const TextStyle(fontSize: 40),
@@ -53,7 +59,6 @@ class PayInputAmount extends StatelessWidget {
                 )),
               ),
             ),
-
             SizedBox(
               height: 50,
             ),

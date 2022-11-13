@@ -10,25 +10,15 @@ class TransactionController extends GetxController {
   // String name;
   // double amount;
   // final DateTime createdAt;
-  void setName(){}
-  void addTransaction(Transaction t){
+  //Types _types;
+  final _listOfTransactions = <Transaction>[].obs;
+
+  List<Transaction> get listOfTransactions => _listOfTransactions;
+
+  addTransaction() {
     
   }
-var PayTransactions = <Transaction> [
-    Transaction(
-        id: 1,
-        type: Types.payment,
-        name: 'narudzba',
-        amount: 23.00,
-        createdAt: DateTime.now()),
-    Transaction(
-        id: 2,
-        type: Types.payment,
-        name: 'narudzba2',
-        amount: 55.00,
-        createdAt: DateTime.now()),
-  ].obs;
-  
+
   var TopUpTransactions = <Transaction>[
     Transaction(
         id: 1,
@@ -43,7 +33,4 @@ var PayTransactions = <Transaction> [
         amount: 55.00,
         createdAt: DateTime.now()),
   ].obs;
-  
-
-  
 }
