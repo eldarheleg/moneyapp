@@ -32,8 +32,8 @@ class TransactionItem extends StatelessWidget {
             SizedBox(
               width: 10,
             ),
-            Expanded(child: Text(c.PayTransactions[index].name)),
-            Text('${c.PayTransactions[index].amount}'),
+            Expanded(child: Text(c.listOfTransactions[index].name)),
+            Text('${c.listOfTransactions[index].amount}'),
           ],
         ),
       ),

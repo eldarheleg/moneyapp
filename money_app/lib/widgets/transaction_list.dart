@@ -13,7 +13,7 @@ class TransactionList extends StatelessWidget {
     return ListView.builder(
         
         shrinkWrap: true,
-        itemCount: c.PayTransactions.length,
+        itemCount: c.listOfTransactions.length,
             itemBuilder: (context, index) => TransactionItem(index: index)
       
     );

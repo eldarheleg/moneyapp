@@ -36,7 +36,7 @@ class PayInputAmount extends StatelessWidget {
             // Obx(
             //   () => Text.rich(textSpan {}
             //     TextSpan(text: '£'),
-                
+
             //   ),
             // ),
             Padding(
@@ -80,6 +80,7 @@ class PayInputAmount extends StatelessWidget {
                   ),
                   onPressed: () {
                     Get.toNamed("/PayInputName");
+                    c.submitData();
                   },
                   child: Text('Pay',
                       style: TextStyle(

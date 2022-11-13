@@ -1,14 +1,16 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controllers/name_controller.dart';
 import '../../home/controllers/transactions_controller.dart';
+import '../../pay_amount/controllers/amount_controller.dart';
 import '../../home/views/transactions_screen.dart';
-import '../../pay_amount/controllers/amount_controller.dart'; //testing
+//testing
 
 class PayInputName extends StatelessWidget {
-  final TransactionController tranController = TransactionController();
-  
+  NameController c = Get.put(NameController());
+  TransactionController t = Get.put(TransactionController());
+  AmountController a = Get.put(AmountController());
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +53,11 @@ class PayInputName extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Center(
                 child: TextField(
-                  controller: _text,
+                  controller: c.textController,
                   decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white))),
-                  onSubmitted: (value) {
-                    double val = double.parse(value);
-                    
-                  },
+                  onSubmitted: (value) {},
                 ),
               ),
             ),
@@ -73,8 +72,11 @@ class PayInputName extends StatelessWidget {
                     backgroundColor: Color.fromRGBO(255, 255, 255, 0.5),
                   ),
                   onPressed: () {
-                    
                     Get.toNamed("/");
+                    t.addTransaction(
+                      c.text.toString(),
+                      a.amount.value
+                    );
                   },
                   child: Text('Pay',
                       style: TextStyle(

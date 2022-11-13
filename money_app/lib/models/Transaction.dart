@@ -7,7 +7,7 @@ class Transaction {
   final Types type;
   String name;
   double amount;
-  final DateTime createdAt;
+  final String createdAt;
 
   Transaction(
       {required this.id,

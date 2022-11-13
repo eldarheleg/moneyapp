@@ -1,36 +1,33 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:collection/collection.dart';
+import 'package:intl/intl.dart';
 
 import '../../../models/Transaction.dart';
 
 class TransactionController extends GetxController {
-  // int id;
+  RxInt id = 1.obs;
   // Types type;
   // String name;
   // double amount;
-  // final DateTime createdAt;
+  final DateTime now = DateTime.now();
   //Types _types;
   final _listOfTransactions = <Transaction>[].obs;
+  //final textController = TextEditingController();
+  //final amountController = TextEditingController();
 
   List<Transaction> get listOfTransactions => _listOfTransactions;
 
-  addTransaction() {
-    
+  addTransaction(String text, double amount) {
+    if (text.isEmpty || amount == 0.0) {
+      Get.snackbar("opss", "that cannot be approved");
+    } else {
+      _listOfTransactions.add(Transaction(
+          id: id.value,
+          type: Types.payment,
+          name: text,
+          amount: amount,
+          createdAt: DateFormat().format(now)));
+    }
+    id++;
   }
-
-  var TopUpTransactions = <Transaction>[
-    Transaction(
-        id: 1,
-        type: Types.top_up,
-        name: 'narudzba',
-        amount: 23.00,
-        createdAt: DateTime.now()),
-    Transaction(
-        id: 2,
-        type: Types.top_up,
-        name: 'narudzba2',
-        amount: 55.00,
-        createdAt: DateTime.now()),
-  ].obs;
 }
