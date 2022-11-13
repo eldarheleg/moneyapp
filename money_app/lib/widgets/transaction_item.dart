@@ -14,7 +14,7 @@ class TransactionItem extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: InkWell(
-        onTap: () => Get.to(TransactionDetails()),
+        onTap: () => Get.toNamed("/TransactionDetails", arguments: index),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

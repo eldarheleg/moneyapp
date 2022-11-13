@@ -15,7 +15,7 @@ class TransactionController extends GetxController {
         type: Types.topUp,
         name: "Top up",
         amount: 150,
-        createdAt: DateFormat.YEAR_NUM_MONTH_DAY)
+        createdAt: DateTime.now().toString())
   ].obs;
 
   List<Transaction> get listOfTransactions => _listOfTransactions;
@@ -29,16 +29,19 @@ class TransactionController extends GetxController {
     return sum.value;
   }
 
+  void addSame(Transaction t) {
+    listOfTransactions.add(t);
+  }
+
   void addTransaction(String text, double amount, int a) {
-    
     if (a == 0) {
       _listOfTransactions.add(Transaction(
           id: id.value,
           type: Types.payment,
           name: text,
-          amount: amount*-1,
+          amount: amount * -1,
           createdAt: DateFormat().format(now)));
-      
+
       id.value++;
     } else {
       _listOfTransactions.add(Transaction(
@@ -50,9 +53,5 @@ class TransactionController extends GetxController {
 
       id.value++;
     }
-  }
-
-  void topUp(double topup) {
-    sum.value += topup;
   }
 }

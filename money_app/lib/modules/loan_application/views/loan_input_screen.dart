@@ -8,6 +8,7 @@ class LoanInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LoanInputController c = Get.put(LoanInputController());
+    int isFirst = 0;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -19,9 +20,8 @@ class LoanInput extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
+        child:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -212,22 +212,22 @@ class LoanInput extends StatelessWidget {
                   ),
                 ),
               ),
-            ],),
-            SizedBox(
-              height: 280,
-            ),
-            SizedBox(
-              width: 200,
-              height: 60,
-              child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Color(0xffC0028B),
-                  ),
-                  onPressed: () {},
-                  child: Text('Apply for loan',
-                      style:
-                          TextStyle(color: Color(0xffffffff), fontSize: 18))),
-            ),
+            ],
+          ),
+          SizedBox(
+            height: 280,
+          ),
+          SizedBox(
+            width: 200,
+            height: 60,
+            child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Color(0xffC0028B),
+                ),
+                onPressed: () {},
+                child: Text('Apply for loan',
+                    style: TextStyle(color: Color(0xffffffff), fontSize: 18))),
+          ),
         ]),
       ),
     );
