@@ -1,6 +1,6 @@
 import 'package:uuid/uuid.dart';
 
-enum Types { payment, top_up }
+enum Types { payment , topUp }
 
 class Transaction {
   final int id;

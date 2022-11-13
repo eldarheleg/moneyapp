@@ -16,7 +16,7 @@ class TransactionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double am = t.sum.value;
+    double am = t.totalAmount();
     int x = int.parse(am.toStringAsFixed(2).split('.')[0]);
     int y = int.parse(am.toStringAsFixed(2).split('.')[1]);
 

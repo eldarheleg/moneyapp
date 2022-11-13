@@ -4,18 +4,16 @@ import 'package:get/get.dart';
 import '../controllers/name_controller.dart';
 import '../../home/controllers/transactions_controller.dart';
 import '../../pay_amount/controllers/amount_controller.dart';
-import '../../home/views/transactions_screen.dart';
-//testing
+import '../../../models/Transaction.dart';
 
 class PayInputName extends StatelessWidget {
-  NameController c = Get.put(NameController());
-  TransactionController t = Get.put(TransactionController());
-  AmountController a = Get.put(AmountController());
-
   @override
   Widget build(BuildContext context) {
     final th = Theme.of(context);
-    final _text = TextEditingController();
+    NameController c = Get.put(NameController()); //automatically close 
+    TransactionController t = Get.put(TransactionController());
+    AmountController a = Get.put(AmountController());
+
     return Scaffold(
       backgroundColor: const Color(0xffC0028B),
       appBar: AppBar(
@@ -33,6 +31,7 @@ class PayInputName extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Column(
           children: [
             SizedBox(
@@ -57,7 +56,7 @@ class PayInputName extends StatelessWidget {
                   decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white))),
-                  onSubmitted: (_) => c.submitData(),
+                  //onSubmitted: (_) => c.submitData(),
                 ),
               ),
             ),
@@ -72,11 +71,16 @@ class PayInputName extends StatelessWidget {
                     backgroundColor: Color.fromRGBO(255, 255, 255, 0.5),
                   ),
                   onPressed: () {
-                    Get.toNamed("/");
-                    t.addTransaction(
-                      c.text.toString(),
-                      a.amount.value
-                    );
+                    if (c.textController.text.isNotEmpty) {
+                      c.submitData();
+                      t.addTransaction(c.text.value, a.amount.value, a.isPay.value);
+                      c.textController.clear();
+                      c.text.value = "";
+                      a.amount.value = 0.0;
+                      Get.toNamed("/");
+                    } else {
+                      Get.snackbar("OPS", "textfield is empty");
+                    }
                   },
                   child: Text('Pay',
                       style: TextStyle(

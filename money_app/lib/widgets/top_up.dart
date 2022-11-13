@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../modules/pay_amount/views/pay_input_amount.dart';
-
+import '../modules/pay_amount/controllers/amount_controller.dart';
 
 class TopUp extends StatelessWidget {
   const TopUp({
@@ -12,8 +11,12 @@ class TopUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AmountController a = Get.put(AmountController());
     return GestureDetector(
-      onTap: () => Get.to(PayInputAmount()),
+      onTap: () {
+        a.isPay.value = 1;
+        Get.toNamed("/PayInputAmount");
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

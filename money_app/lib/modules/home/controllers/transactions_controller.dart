@@ -7,35 +7,52 @@ import '../../../models/Transaction.dart';
 class TransactionController extends GetxController {
   RxInt id = 1.obs;
   RxDouble sum = 0.0.obs;
-  // Types type;
-  // String name;
-  // double amount;
   final DateTime now = DateTime.now();
-  //Types _types;
-  final _listOfTransactions = <Transaction>[].obs;
-  //final textController = TextEditingController();
-  //final amountController = TextEditingController();
+
+  final _listOfTransactions = <Transaction>[
+    Transaction(
+        id: 2,
+        type: Types.topUp,
+        name: "Top up",
+        amount: 150,
+        createdAt: DateFormat.YEAR_NUM_MONTH_DAY)
+  ].obs;
 
   List<Transaction> get listOfTransactions => _listOfTransactions;
-  
-  double totalAmount(){
-    for(var tx in listOfTransactions){
-      sum.value += tx.amount;
+
+  double totalAmount() {
+    double total = 0.0;
+    for (var tx in listOfTransactions) {
+      total += tx.amount;
     }
+    sum.value = total;
     return sum.value;
   }
 
-  addTransaction(String text, double amount) {
-    if (text.isEmpty || amount == 0.0) {
-      Get.snackbar("opss", "that cannot be approved");
-    } else {
+  void addTransaction(String text, double amount, int a) {
+    
+    if (a == 0) {
       _listOfTransactions.add(Transaction(
           id: id.value,
           type: Types.payment,
           name: text,
+          amount: amount*-1,
+          createdAt: DateFormat().format(now)));
+      
+      id.value++;
+    } else {
+      _listOfTransactions.add(Transaction(
+          id: id.value,
+          type: Types.topUp,
+          name: text,
           amount: amount,
           createdAt: DateFormat().format(now)));
+
+      id.value++;
     }
-    id++;
+  }
+
+  void topUp(double topup) {
+    sum.value += topup;
   }
 }

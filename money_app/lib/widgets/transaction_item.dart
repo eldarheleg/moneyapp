@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +32,9 @@ class TransactionItem extends StatelessWidget {
               width: 10,
             ),
             Expanded(child: Text(c.listOfTransactions[index].name)),
-            Text('${c.listOfTransactions[index].amount}'),
+            c.listOfTransactions[index].type.index == 0
+                ? Text('${c.listOfTransactions[index].amount}')
+                : Text('+${c.listOfTransactions[index].amount}')
           ],
         ),
       ),

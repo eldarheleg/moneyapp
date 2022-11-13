@@ -9,16 +9,7 @@ class NameController extends GetxController {
   RxString text = "".obs;
 
   void submitData() {
-    if (textController.text.isEmpty) {
-      return;
-    } else {
-      String inputedString = textController.text;
-      if (textController.text.isEmpty || inputedString.isEmpty) {
-        return;
-      } else {
-        text.value = inputedString;
-      }
-      textController.clear();
-    }
+    text.value = textController.text;
+    
   }
 }

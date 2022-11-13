@@ -3,17 +3,17 @@ import 'package:get/get.dart';
 
 import '../../../theme/light_theme.dart';
 import '../controllers/amount_controller.dart';
-import '../../trans_details/controllers/transaction_details_controller.dart';
+import '../../home/controllers/transactions_controller.dart';
+import '../../pay_name/controllers/name_controller.dart';
 import '../../../widgets/custom_numpad.dart';
 
 class PayInputAmount extends StatelessWidget {
-  AmountController c = Get.put(AmountController());
-  //TransactionDetailsController t = Get.put(TransactionDetailsController());
-
   @override
   Widget build(BuildContext context) {
     final th = Theme.of(context);
-    //TextEditingController _text = TextEditingController();
+    AmountController c = Get.put(AmountController());
+    TransactionController t = Get.put(TransactionController());
+    NameController n = Get.put(NameController());
 
     return Scaffold(
       backgroundColor: const Color(0xffC0028B),
@@ -27,6 +27,7 @@ class PayInputAmount extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -73,8 +74,23 @@ class PayInputAmount extends StatelessWidget {
                     backgroundColor: Color.fromRGBO(255, 255, 255, 0.5),
                   ),
                   onPressed: () {
-                    Get.toNamed("/PayInputName");
-                    c.submitData();
+                    if (c.isPay.value == 0) {
+                      if (c.amountController.text.isEmpty) {
+                        Get.snackbar("OPS", "textfield is empty");
+                      } else {
+                        c.submitData();
+                        c.amountController.clear();
+                        Get.toNamed("/PayInputName");
+                      }
+                    } else {
+                      c.submitData();
+                      c.amountController.clear();
+                      t.addTransaction("Top Up", c.amount.value, c.isPay.value);
+                      n.text.value = "";
+                      c.amount.value = 0.0;
+                      c.isPay.value = 0;
+                      Get.toNamed("/");
+                    }
                   },
                   child: Text('Pay',
                       style: TextStyle(
