@@ -5,9 +5,9 @@ import '../../../theme/light_theme.dart';
 import '../controllers/loan_input_controller.dart';
 
 class LoanInput extends StatelessWidget {
+  LoanInputController c = Get.put(LoanInputController());
   @override
   Widget build(BuildContext context) {
-    LoanInputController c = Get.put(LoanInputController());
     int isFirst = 0;
     return Scaffold(
       appBar: AppBar(
@@ -92,23 +92,31 @@ class LoanInput extends StatelessWidget {
                   style: TextStyle(fontSize: 14),
                 ),
               ),
-              Container(
-                width: double.maxFinite,
-                height: 50,
-                color: Color(0xffffffff),
-                child: GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                        title: Text("Monthly Salary"),
-                        content: TextField(keyboardType: TextInputType.phone,controller: c.mSalary,),
-                        actions: [
-                          TextButton(onPressed: () {}, child: Text("Submit"))
-                        ],
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: Text("Monthly Salary"),
+                      content: TextField(
+                        keyboardType: TextInputType.number,
+                        controller: c.mSalary,
                       ),
-                    );
-                  },
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Get.back();
+                              c.onSubmit();
+                            },
+                            child: Text("Submit"))
+                      ],
+                    ),
+                  );
+                },
+                child: Container(
+                  width: double.maxFinite,
+                  height: 50,
+                  color: Color(0xffffffff),
                   child: Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: 20,
@@ -126,39 +134,65 @@ class LoanInput extends StatelessWidget {
                                   fontFamily: 'Montserrat'),
                             ),
                           ),
-                          Text('\$${c.mSalary.text}',
-                              style: TextStyle(
-                                  fontSize: 16, fontFamily: 'Montserrat'))
+                          Obx(
+                            () => Text('\$${c.mSalaryValue.value}',
+                                style: TextStyle(
+                                    fontSize: 16, fontFamily: 'Montserrat')),
+                          ),
                         ],
                       )),
                 ),
               ),
-              Container(
-                width: double.maxFinite,
-                height: 50,
-                color: Color(0xffffffff),
-                child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 20,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 4),
-                          child: Text(
-                            'Monthly Expenses',
-                            style: TextStyle(
-                                color: Color(0xff9E9E9E),
-                                fontSize: 12,
-                                fontFamily: 'Montserrat'),
-                          ),
-                        ),
-                        Text('\$250',
-                            style: TextStyle(
-                                fontSize: 16, fontFamily: 'Montserrat'))
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: Text("Monthly Expenses"),
+                      content: TextField(
+                        keyboardType: TextInputType.number,
+                        controller: c.mExpenses,
+                      ),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Get.back();
+                              c.onSubmit();
+                            },
+                            child: Text("Submit"))
                       ],
-                    )),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: double.maxFinite,
+                  height: 50,
+                  color: Color(0xffffffff),
+                  child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 4),
+                            child: Text(
+                              'Monthly Expenses',
+                              style: TextStyle(
+                                  color: Color(0xff9E9E9E),
+                                  fontSize: 12,
+                                  fontFamily: 'Montserrat'),
+                            ),
+                          ),
+                          Obx(
+                            () => Text('\$${c.mExpensesValue.value}',
+                                style: TextStyle(
+                                    fontSize: 16, fontFamily: 'Montserrat')),
+                          ),
+                        ],
+                      )),
+                ),
               ),
               const SizedBox(
                 height: 11,
@@ -171,11 +205,83 @@ class LoanInput extends StatelessWidget {
                   style: TextStyle(fontSize: 14),
                 ),
               ),
-              Container(
-                width: double.maxFinite,
-                height: 50,
-                color: Color(0xffffffff),
-                child: Padding(
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: Text("Amount"),
+                      content: TextField(
+                        keyboardType: TextInputType.number,
+                        controller: c.lAmount,
+                      ),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Get.back();
+                              c.onSubmit();
+                            },
+                            child: Text("Submit"))
+                      ],
+                    ),
+                  );
+                },
+                child: Container(
+                  width: double.maxFinite,
+                  height: 50,
+                  color: Color(0xffffffff),
+                  child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 4),
+                            child: Text(
+                              'Amount',
+                              style: TextStyle(
+                                  color: Color(0xff9E9E9E),
+                                  fontSize: 12,
+                                  fontFamily: 'Montserrat'),
+                            ),
+                          ),
+                          Obx(
+                            () => Text('\$${c.lAmountValue.value}',
+                                style: TextStyle(
+                                    fontSize: 16, fontFamily: 'Montserrat')),
+                          ),
+                        ],
+                      )),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: Text("Term"),
+                      content: TextField(
+                        keyboardType: TextInputType.number,
+                        controller: c.lTerm,
+                      ),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Get.back();
+                              c.onSubmit();
+                            },
+                            child: Text("Submit"))
+                      ],
+                    ),
+                  );
+                },
+                child: Container(
+                  width: double.maxFinite,
+                  height: 50,
+                  color: Color(0xffffffff),
+                  child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 20,
                     ),
@@ -185,44 +291,20 @@ class LoanInput extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(top: 4),
                           child: Text(
-                            'Amount',
+                            'Term',
                             style: TextStyle(
                                 color: Color(0xff9E9E9E),
                                 fontSize: 12,
                                 fontFamily: 'Montserrat'),
                           ),
                         ),
-                        Text('\$10010',
-                            style: TextStyle(
-                                fontSize: 16, fontFamily: 'Montserrat'))
-                      ],
-                    )),
-              ),
-              Container(
-                width: double.maxFinite,
-                height: 50,
-                color: Color(0xffffffff),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 4),
-                        child: Text(
-                          'Term',
-                          style: TextStyle(
-                              color: Color(0xff9E9E9E),
-                              fontSize: 12,
-                              fontFamily: 'Montserrat'),
+                        Obx(
+                          () => Text('\$${c.lTermValue.value}',
+                              style: TextStyle(
+                                  fontSize: 16, fontFamily: 'Montserrat')),
                         ),
-                      ),
-                      Text('48',
-                          style:
-                              TextStyle(fontSize: 16, fontFamily: 'Montserrat'))
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -238,7 +320,22 @@ class LoanInput extends StatelessWidget {
                 style: TextButton.styleFrom(
                   backgroundColor: Color(0xffC0028B),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  if (c.mSalary.text.isEmpty ||
+                      c.mExpenses.text.isEmpty ||
+                      c.lAmount.text.isEmpty ||
+                      c.lTerm.text.isEmpty) {
+                    Get.snackbar("Oooppps", "One of the fields is empty");
+                  } else {
+                    if (c.isFirstTime == 0) {
+                      Get.snackbar("Congratss",
+                          "Yeeeyyy !! Congrats. Your application has been approved. Don't tell your friends you have money!");
+                      c.isFirstTime++;
+                    }else{
+                      Get.snackbar("Ooopsss.","Your application has been declined. It's not your fault, it's a financial crisis.");
+                    }
+                  }
+                },
                 child: Text('Apply for loan',
                     style: TextStyle(color: Color(0xffffffff), fontSize: 18))),
           ),

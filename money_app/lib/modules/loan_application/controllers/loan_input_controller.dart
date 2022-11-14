@@ -10,6 +10,21 @@ class LoanInputController extends GetxController {
   TextEditingController mExpenses = TextEditingController();
   TextEditingController lAmount = TextEditingController();
   TextEditingController lTerm = TextEditingController();
+  RxInt mSalaryValue = 0.obs;
+  RxInt mExpensesValue = 0.obs;
+  RxInt lAmountValue = 0.obs;
+  RxInt lTermValue = 0.obs;
+
+  void onSubmit() {
+    mSalaryValue.value = int.parse(mSalary.text);
+    mExpensesValue.value = int.parse(mExpenses.text);
+    lAmountValue.value = int.parse(lAmount.text);
+    lTermValue.value = int.parse(lTerm.text);
+    mSalary.clear();
+    mExpenses.clear();
+    lAmount.clear();
+    lTerm.clear();
+  }
 
   final _listOfLoanApplication = <Loan>[];
 
@@ -19,7 +34,5 @@ class LoanInputController extends GetxController {
     isOn.value = val;
   }
 
-  void applyForLoan(int mSalary,int mExpenses, int lAmount,int lTerm){
-
-  }
+  void applyForLoan(int mSalary, int mExpenses, int lAmount, int lTerm) {}
 }
